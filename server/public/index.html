@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Weekend Challenge 3</title>
+    <link href="styles/styles.css" rel="stylesheet" type="text/css">
+    <script src="vendors/angular.min.js"></script>
+    <script src="scripts/client.js"></script>
+</head>
+<body ng-app="toDoList">
+    <div ng-controller="ToDoListController as vm">
+        <h1>TO DO List</h1>
+        
+        <input type="text" placeholder="Enter Task TODO" ng-model="vm.newTask.task">
+        <input type="text" placeholder="Equipment" ng-model="vm.newTask.equipment">
+        <input type="text" placeholder="Location" ng-model="vm.newTask.location">
+        <select ng-model="vm.newTask.priority">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+        </select>
+        <button ng-click="vm.addTask(vm.newTask)">To Do List!</button>
+
+        <table layout="row" layout="column" layout-align="center">
+            <thead>
+                <tr flex class="head">
+                    <th>Task To Do</th><th>Equipment To Do</th><th>Location To Do</th><th>Priority To Do</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr flex class ="content" ng-class="{'task-completed': !chore.completed}" ng-repeat="chore in vm.taskArray">
+                    <td>{{chore.task}}</td><td>{{chore.equipment}}</td><td>{{chore.location}}</td><td>{{chore.priority}}</td><td><button ng-if="!chore.completed" ng-click="vm.click(chore.completed)">Complete!</button></td><td><button ng-click="vm.deleteTask(chore._id)">Delete</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
